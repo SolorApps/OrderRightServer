@@ -1,5 +1,3 @@
-var Restaurant = require('../models/restaurantModel');
-var Menu = require('../models/menuModel');
 var Item = require('../models/itemModel');
 
 module.exports = function(app) {
@@ -12,8 +10,11 @@ module.exports = function(app) {
                 itemQuery = itemQuery.where('name').equals(req.query.name);
             }
         }
+        else if (req.query.name){
+                itemQuery = itemQuery.find({ name:req.query.name});
+        }
         else{
-            itemQuery = itemQuery.find({ name:req.query.name});
+            itemQuery = itemQuery.find({});
         }
         itemQuery.exec(function(error, items) {
             res.send(JSON.stringify(items));
