@@ -30,6 +30,12 @@ module.exports = function(app) {
             restaurantQuery = restaurantQuery.populate('menus.'+ req.query.day +'.menu');
             console.log('printed one day');
         }
+        if (!restaurantQuery){
+            console.log('printed no query');
+        }
+        if (restaurantQuery == undefined){
+            console.log('result is empty');
+        }
         restaurantQuery.exec(function(error, restaurant) {
                 res.send(JSON.stringify(restaurant, null, "\t"));
                 console.log(JSON.stringify(restaurant, null, "\t"));

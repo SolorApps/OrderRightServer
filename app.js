@@ -20,5 +20,5 @@ itemController(app);
 menuController(app);
 restaurantController(app);
 
-//app.listen(port)
-app.listen(port,'172.31.52.14')
+app.listen(port)
+//app.listen(port,'172.31.52.14')
