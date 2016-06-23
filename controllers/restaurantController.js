@@ -4,8 +4,8 @@ module.exports = function(app) {
 
     app.use(function(err, req, res, next) {
         console.log('err status'+ err.status);
-        console.log(err.message);
-        res.status(err.status || 500);
+        //console.log(err.message);
+        //res.status(err.status || 500);
         res.json(err.status, { error: err.message });
     });
     
@@ -47,7 +47,7 @@ module.exports = function(app) {
             console.log('PRINTING' + error);
                 if (restaurant == undefined){
                     err = new Error("this was undefined");
-                    err.status = 500;
+                    err.status = 200;
                     console.log('_-_undefined');
                     next(err);
                     //res.json(500, { error: 'message' });
