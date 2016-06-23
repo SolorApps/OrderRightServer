@@ -8,7 +8,7 @@ module.exports = function(app) {
         console.log('myerr');
         //console.log(err.message);
         //res.status(err.status || 500);
-        res.json(err.status, { error: err.message });
+        res.json(err.status, { error: err.status });
     });
     
     app.get('/api/getRestaurant', function(req, res, next){    
