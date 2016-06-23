@@ -45,7 +45,8 @@ module.exports = function(app) {
                     console.log(error);
                     console.log('result is empty');
                 }
-                res.send(restaurant);
+                //res.send(restaurant);
+                res.json({er:"a error accured"});
                 //res.send(JSON.stringify(restaurant, null, "\t"));
                 console.log(JSON.stringify(restaurant, null, "\t"));
             });
