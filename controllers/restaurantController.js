@@ -46,7 +46,7 @@ module.exports = function(app) {
                     console.log('result is empty');
                 }
                 //res.send(restaurant);
-                res.json(true);
+                res.json(restaurant);
                 //res.send(JSON.stringify(restaurant, null, "\t"));
                 console.log(JSON.stringify(restaurant, null, "\t"));
             });
