@@ -3,7 +3,7 @@ var Restaurant = require('../models/restaurantModel');
 module.exports = function(app) {
 
     app.use(function(err, req, res, next) {
-        console.log(err.status);
+        console.log('err status'+ err.status);
         console.log(err.message);
         res.status(err.status || 500);
         res.json(err.status, { error: err.message });
@@ -48,7 +48,7 @@ module.exports = function(app) {
                 if (restaurant == undefined){
                     err = new Error("this was undefined");
                     err.status = 500;
-                    console.log('undefined');
+                    console.log('_-_undefined');
                     next(err);
                     //res.json(500, { error: 'message' });
                 }
@@ -63,7 +63,7 @@ module.exports = function(app) {
                 //res.send(restaurant);
                 //res.json(500, { error: 'message' });
                 //res.send(JSON.stringify(restaurant, null, "\t"));
-                console.log(JSON.stringify(restaurant, null, "\t"));
+                //console.log(JSON.stringify(restaurant, null, "\t"));
             });
     });
 }
