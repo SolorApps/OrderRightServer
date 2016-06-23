@@ -3,9 +3,9 @@ var Restaurant = require('../models/restaurantModel');
 module.exports = function(app) {
 
     app.use(function(err, req, res, next) {
-        console.log('err status');
-        console.log(err.status);
-        console.log('myerr');
+        //console.log('err status');
+        //console.log(err.status);
+        //console.log('myerr');
         //console.log(err.message);
         //res.status(err.status || 500);
         res.json(err.status, { error: err.status });
@@ -48,9 +48,9 @@ module.exports = function(app) {
         restaurantQuery.exec(function(error, restaurant) {
             console.log('PRINTING' + error);
                 if (restaurant == undefined){
-                    err = new Error("this was undefined");
+                    err = new Error("this was an err undefined");
                     err.status = 500;
-                    console.log(err.status);
+                    //console.log(err.status);
                     console.log('_-_undefined');
                     next(err);
                     //res.json(500, { error: 'message' });
