@@ -9,7 +9,7 @@ module.exports = function(app) {
         res.json(err.status, { error: err.message });
     });
     
-    app.get('/api/getRestaurant', function(req, res){    
+    app.get('/api/getRestaurant', function(req, res, next){    
         restaurantQuery = Restaurant;
         if (req.query.id){
             restaurantQuery = restaurantQuery.find({ _id:req.query.id });
@@ -44,7 +44,7 @@ module.exports = function(app) {
             console.log('result is empty');
         }
         restaurantQuery.exec(function(error, restaurant) {
-            console.log(error);
+            console.log('PRINTING' + error);
                 if (restaurant == undefined){
                     err = new Error("this was undefined");
                     err.status = 500;
