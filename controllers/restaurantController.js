@@ -53,7 +53,7 @@ module.exports = function(app) {
                     err.status = 500;
                     //console.log(err.status);
                     console.log('_-_undefined');
-                    next(err);
+                    //next(err);
                     //res.json(500, { error: 'message' });
                 }
                 else if (restaurant.length && restaurant.length > 0){
