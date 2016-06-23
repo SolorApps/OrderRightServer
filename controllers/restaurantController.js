@@ -37,10 +37,11 @@ module.exports = function(app) {
             console.log('result is empty');
         }
         restaurantQuery.exec(function(error, restaurant) {
-                if (!restaurant){
-                console.log('printed no query');
+                if (restaurant.length && restaurant.length > 0){
+                    console.log('printed no query');
                 }
-                if (restaurant == undefined){
+                else{
+                    console.log(restaurant.length)
                     console.log('result is empty');
                 }
                 res.send(JSON.stringify(restaurant, null, "\t"));
