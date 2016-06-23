@@ -3,8 +3,9 @@ var Restaurant = require('../models/restaurantModel');
 module.exports = function(app) {
 
     app.use(function(err, req, res, next) {
-        //console.log('err status');
-        //console.log(err.status);
+        console.log('inside error handler');
+        console.log('err status');
+        console.log(err.status);
         //console.log('myerr');
         //console.log(err.message);
         //res.status(err.status || 500);
