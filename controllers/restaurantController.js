@@ -41,7 +41,8 @@ module.exports = function(app) {
                     console.log('printed no query');
                 }
                 else{
-                    console.log(restaurant.length)
+                    console.log(restaurant.length);
+                    console.log(error);
                     console.log('result is empty');
                 }
                 res.send(JSON.stringify(restaurant, null, "\t"));
