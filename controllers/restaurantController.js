@@ -1,6 +1,13 @@
 var Restaurant = require('../models/restaurantModel');
 
 module.exports = function(app) {
+
+    app.use(function(err, req, res, next) {
+        console.log(err.status);
+        console.log(err.message);
+        res.status(err.status || 500);
+        res.json(err.status, { error: err.message });
+    });
     
     app.get('/api/getRestaurant', function(req, res){    
         restaurantQuery = Restaurant;
@@ -39,7 +46,11 @@ module.exports = function(app) {
         restaurantQuery.exec(function(error, restaurant) {
             console.log(error);
                 if (restaurant == undefined){
-                    res.json(500, { error: 'message' });
+                    err = new Error("this was undefined");
+                    err.status = 500;
+                    console.log('undefined');
+                    next(err);
+                    //res.json(500, { error: 'message' });
                 }
                 else if (restaurant.length && restaurant.length > 0){
                     console.log('printed no query');
