@@ -38,7 +38,7 @@ module.exports = function(app) {
         }
         restaurantQuery.exec(function(error, restaurant) {
                 if (restaurant == undefined){
-                    res.json(500, { error: 'message' });
+                    res.json(260, { error: 'message' });
                 }
                 else if (restaurant.length && restaurant.length > 0){
                     console.log('printed no query');
