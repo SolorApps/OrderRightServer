@@ -37,6 +37,7 @@ module.exports = function(app) {
             console.log('result is empty');
         }
         restaurantQuery.exec(function(error, restaurant) {
+            console.log(error);
                 if (restaurant == undefined){
                     res.json(500, { error: 'message' });
                 }
