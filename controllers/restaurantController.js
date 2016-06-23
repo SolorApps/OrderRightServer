@@ -49,7 +49,7 @@ module.exports = function(app) {
                     console.log('result is empty');
                 }
                 //res.send(restaurant);
-                res.json(500, { error: 'message' });
+                //res.json(500, { error: 'message' });
                 //res.send(JSON.stringify(restaurant, null, "\t"));
                 console.log(JSON.stringify(restaurant, null, "\t"));
             });
