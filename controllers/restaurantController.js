@@ -86,6 +86,7 @@ module.exports = function(app) {
         console.log(err.status);
         console.log('myerr');
         console.log(err);
+        console.log(req);
         //console.log(err.message);
         //res.status(err.status || 500);
         res.json(err.status, { error: err.status });
