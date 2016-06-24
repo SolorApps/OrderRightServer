@@ -57,7 +57,7 @@ module.exports = function(app) {
                 console.log(error.status);
                 
             }
-            // if (error) return next(error);
+            if (error) return next(error);
 
                 if (restaurant == undefined){
                     err = new Error("this was err undefined");
