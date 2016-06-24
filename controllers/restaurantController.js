@@ -3,9 +3,8 @@ var Restaurant = require('../models/restaurantModel');
 module.exports = function(app) {
 
     app.use(function(err, req, res, next) {
-        console.log('inside error handler');
-        console.log('err status');
-        console.log(err.status);
+        //console.log('err status');
+        //console.log(err.status);
         //console.log('myerr');
         //console.log(err.message);
         //res.status(err.status || 500);
@@ -47,12 +46,9 @@ module.exports = function(app) {
             console.log('result is empty');
         }
         restaurantQuery.exec(function(error, restaurant) {
-            if (errMenu) throw error;
-
             console.log('PRINTING' + error);
-
                 if (restaurant == undefined){
-                    err = new Error("this was an err undefined");
+                    err = new Error("this was err undefined");
                     err.status = 500;
                     //console.log(err.status);
                     console.log('_-_undefined');
@@ -73,14 +69,4 @@ module.exports = function(app) {
                 //console.log(JSON.stringify(restaurant, null, "\t"));
             });
     });
-
-    // app.use(function(err, req, res, next) {
-    //     console.log('inside error handler');
-    //     console.log('err status');
-    //     console.log(err.status);
-    //     //console.log('myerr');
-    //     //console.log(err.message);
-    //     //res.status(err.status || 500);
-    //     res.json(err.status, { error: err.status });
-    // });
 }
