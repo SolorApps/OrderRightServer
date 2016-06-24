@@ -47,7 +47,10 @@ module.exports = function(app) {
             console.log('result is empty');
         }
         restaurantQuery.exec(function(error, restaurant) {
+            if (error) throw error;
+
             console.log('PRINTING' + error);
+
                 if (restaurant == undefined){
                     err = new Error("this was an err undefined");
                     err.status = 500;
@@ -70,7 +73,7 @@ module.exports = function(app) {
                 //console.log(JSON.stringify(restaurant, null, "\t"));
             });
     });
-    
+
     app.use(function(err, req, res, next) {
         console.log('inside error handler');
         console.log('err status');
