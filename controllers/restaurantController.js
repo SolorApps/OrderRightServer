@@ -84,7 +84,8 @@ module.exports = function(app) {
     app.use(function(err, req, res, next) {
         console.log('err status');
         console.log(err.status);
-        //console.log('myerr');
+        console.log('myerr');
+        console.log(err);
         //console.log(err.message);
         //res.status(err.status || 500);
         res.json(err.status, { error: err.status });
