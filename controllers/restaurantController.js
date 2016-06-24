@@ -53,6 +53,9 @@ module.exports = function(app) {
             else{
                 console.log('this is not null');
                 console.log(error);
+                console.log('not null and status');
+                console.log(error.status);
+                
             }
             if (error) return next(error);
 
