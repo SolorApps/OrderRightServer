@@ -54,8 +54,18 @@ module.exports = function(app) {
                 return next(error);
             }
             else{
+                console.log('error in else'+ error);
                 console.log('error is not null');
                 // res.send(restaurant);
+                console.log(restaurant);
+                if (restaurant == undefined){
+                    err = new Error("no restaurant found");
+                    err.status = 404;
+                    //console.log(err.status);
+                    console.log('_-_undefined');
+                    next(err);
+                    //res.json(500, { error: 'message' });
+                }
                 res.send(JSON.stringify(restaurant, null, "\t"));
                 console.log(JSON.stringify(restaurant, null, "\t"));
             }
