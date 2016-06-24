@@ -47,6 +47,15 @@ module.exports = function(app) {
         }
         restaurantQuery.exec(function(error, restaurant) {
             console.log('PRINTING' + error);
+            if (error == null){
+                console.log('this is null');
+            }
+            else{
+                console.log('this is not null');
+                console.log(error);
+            }
+            if (error) return next(error);
+
                 if (restaurant == undefined){
                     err = new Error("this was err undefined");
                     err.status = 404;
