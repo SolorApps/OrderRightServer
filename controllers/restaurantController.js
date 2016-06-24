@@ -54,7 +54,7 @@ module.exports = function(app) {
                 return next(error);
             }
             else{
-                Console.log('error is not null');
+                console.log('error is not null');
                 // res.send(restaurant);
                 res.send(JSON.stringify(restaurant, null, "\t"));
                 console.log(JSON.stringify(restaurant, null, "\t"));
