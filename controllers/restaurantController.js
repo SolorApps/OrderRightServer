@@ -49,7 +49,7 @@ module.exports = function(app) {
             console.log('PRINTING' + error);
                 if (restaurant == undefined){
                     err = new Error("this was err undefined");
-                    err.status = 500;
+                    err.status = 404;
                     //console.log(err.status);
                     console.log('_-_undefined');
                     next(err);
@@ -70,8 +70,8 @@ module.exports = function(app) {
         });
     });
     app.use(function(err, req, res, next) {
-        //console.log('err status');
-        //console.log(err.status);
+        console.log('err status');
+        console.log(err.status);
         //console.log('myerr');
         //console.log(err.message);
         //res.status(err.status || 500);
