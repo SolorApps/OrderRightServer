@@ -50,6 +50,7 @@ module.exports = function(app) {
 
             if (error){
                 console.log('error is detected');
+                console.log(restaurant);
                 error.status = 404;
                 return next(error);
             }
@@ -66,43 +67,22 @@ module.exports = function(app) {
                     next(err);
                     //res.json(500, { error: 'message' });
                 }
+                else if (restaurant.length && restaurant.length > 0){
+                    console.log('printed no query');
+                }
+                else{
+                    console.log(restaurant.length);
+                    console.log('result is empty');
+                    err = new Error("no restaurant found");
+                    err.status = 404;
+                    console.log('_-_undefined');
+                    next(err);
+                }
+                
+                
                 res.send(JSON.stringify(restaurant, null, "\t"));
                 console.log(JSON.stringify(restaurant, null, "\t"));
             }
-
-
-            // if (error == null){
-            //     console.log('this is null');
-            // }
-            // else{
-            //     console.log('this is not null');
-            //     console.log(error);
-            //     console.log('not null and status');
-            //     console.log(error.status);
-                
-            // }
-            //if (error) return next(error);
-
-                // if (restaurant == undefined){
-                //     err = new Error("this was err undefined");
-                //     err.status = 404;
-                //     //console.log(err.status);
-                //     console.log('_-_undefined');
-                //     next(err);
-                //     //res.json(500, { error: 'message' });
-                // }
-                // else if (restaurant.length && restaurant.length > 0){
-                //     console.log('printed no query');
-                // }
-                // else{
-                //     console.log(restaurant.length);
-                //     console.log(error);
-                //     console.log('result is empty');
-                // }
-                //res.send(restaurant);
-                //res.json(500, { error: 'message' });
-                //res.send(JSON.stringify(restaurant, null, "\t"));
-                //console.log(JSON.stringify(restaurant, null, "\t"));
         });
     });
     app.use(function(err, req, res, next) {
