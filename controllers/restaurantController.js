@@ -13,6 +13,7 @@ module.exports = function(app) {
     
     app.get('/api/getRestaurant', function(req, res, next){    
         restaurantQuery = Restaurant;
+        console.log('query length' + req.query);
         if (req.query.id){
             restaurantQuery = restaurantQuery.find({ _id:req.query.id });
             if (req.query.name){
@@ -39,15 +40,10 @@ module.exports = function(app) {
             restaurantQuery = restaurantQuery.populate('menus.'+ req.query.day +'.menu');
             console.log('printed one day');
         }
-        if (!restaurantQuery){
-            console.log('printed no query');
-        }
         if (restaurantQuery == undefined){
-            console.log('result is empty');
+            console.log('result is an undegined empty');
         }
         restaurantQuery.exec(function(error, restaurant) {
-            console.log('PRINTING' + error);
-
             if (error){
                 console.log('error is detected');
                 console.log(restaurant);
@@ -57,18 +53,11 @@ module.exports = function(app) {
             else{
                 console.log('error in else'+ error);
                 console.log('error is not null');
-                // res.send(restaurant);
                 console.log(restaurant);
-                if (restaurant == undefined){
-                    err = new Error("no restaurant found");
-                    err.status = 404;
-                    //console.log(err.status);
-                    console.log('_-_undefined');
-                    next(err);
-                    //res.json(500, { error: 'message' });
-                }
-                else if (restaurant.length && restaurant.length > 0){
+                if (restaurant.length && restaurant.length > 0){
                     console.log('printed no query');
+                    res.send(JSON.stringify(restaurant, null, "\t"));
+                    console.log(JSON.stringify(restaurant, null, "\t"));
                 }
                 else{
                     console.log(restaurant.length);
@@ -78,10 +67,6 @@ module.exports = function(app) {
                     console.log('_-_undefined');
                     next(err);
                 }
-                
-                
-                res.send(JSON.stringify(restaurant, null, "\t"));
-                console.log(JSON.stringify(restaurant, null, "\t"));
             }
         });
     });
