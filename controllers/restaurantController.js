@@ -2,15 +2,15 @@ var Restaurant = require('../models/restaurantModel');
 
 module.exports = function(app) {
 
-    // app.use(function(err, req, res, next) {
-    //     console.log('inside error handler');
-    //     console.log('err status');
-    //     console.log(err.status);
-    //     //console.log('myerr');
-    //     //console.log(err.message);
-    //     //res.status(err.status || 500);
-    //     res.json(err.status, { error: err.status });
-    // });
+    app.use(function(err, req, res, next) {
+        console.log('inside error handler');
+        console.log('err status');
+        console.log(err.status);
+        //console.log('myerr');
+        //console.log(err.message);
+        //res.status(err.status || 500);
+        res.json(err.status, { error: err.status });
+    });
     
     app.get('/api/getRestaurant', function(req, res, next){    
         restaurantQuery = Restaurant;
@@ -47,7 +47,7 @@ module.exports = function(app) {
             console.log('result is empty');
         }
         restaurantQuery.exec(function(error, restaurant) {
-            if (error) throw error;
+            if (errMenu) throw error;
 
             console.log('PRINTING' + error);
 
@@ -74,13 +74,13 @@ module.exports = function(app) {
             });
     });
 
-    app.use(function(err, req, res, next) {
-        console.log('inside error handler');
-        console.log('err status');
-        console.log(err.status);
-        //console.log('myerr');
-        //console.log(err.message);
-        //res.status(err.status || 500);
-        res.json(err.status, { error: err.status });
-    });
+    // app.use(function(err, req, res, next) {
+    //     console.log('inside error handler');
+    //     console.log('err status');
+    //     console.log(err.status);
+    //     //console.log('myerr');
+    //     //console.log(err.message);
+    //     //res.status(err.status || 500);
+    //     res.json(err.status, { error: err.status });
+    // });
 }
