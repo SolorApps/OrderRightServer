@@ -2,15 +2,15 @@ var Restaurant = require('../models/restaurantModel');
 
 module.exports = function(app) {
 
-    app.use(function(err, req, res, next) {
-        console.log('inside error handler');
-        console.log('err status');
-        console.log(err.status);
-        //console.log('myerr');
-        //console.log(err.message);
-        //res.status(err.status || 500);
-        res.json(err.status, { error: err.status });
-    });
+    // app.use(function(err, req, res, next) {
+    //     console.log('inside error handler');
+    //     console.log('err status');
+    //     console.log(err.status);
+    //     //console.log('myerr');
+    //     //console.log(err.message);
+    //     //res.status(err.status || 500);
+    //     res.json(err.status, { error: err.status });
+    // });
     
     app.get('/api/getRestaurant', function(req, res, next){    
         restaurantQuery = Restaurant;
@@ -69,5 +69,15 @@ module.exports = function(app) {
                 //res.send(JSON.stringify(restaurant, null, "\t"));
                 //console.log(JSON.stringify(restaurant, null, "\t"));
             });
+    });
+    
+    app.use(function(err, req, res, next) {
+        console.log('inside error handler');
+        console.log('err status');
+        console.log(err.status);
+        //console.log('myerr');
+        //console.log(err.message);
+        //res.status(err.status || 500);
+        res.json(err.status, { error: err.status });
     });
 }
