@@ -43,7 +43,7 @@ module.exports = function(app) {
                 imageUrl: req.body.imageUrl
             },function(err, item){
                 if (err){
-                    error.status = 404;
+                    error.status = 409;
                     return next(err);
                 }
                 else{
@@ -59,7 +59,7 @@ module.exports = function(app) {
             });
             newTodo.save(function(err){
                 if (err){
-                    error.status = 404;
+                    error.status = 409;
                     return next(err);
                 }
                 else{
