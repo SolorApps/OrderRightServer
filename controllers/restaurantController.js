@@ -46,16 +46,4 @@ module.exports = function(app) {
             }
         });
     });
-
-
-    // app.get('*', function(req, res, next) {
-    //     var err = new Error('oops! something broke');
-    //     err.status = 404;
-    //     next(err);
-    // });
-    // app.use(function(err, req, res, next) {
-    //     console.log(err.status);
-    //     console.log(err.message);
-    //     res.status(err.status || 500).json({ error: err.message});
-    // });
 }
