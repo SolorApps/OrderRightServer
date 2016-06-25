@@ -4,13 +4,13 @@ module.exports = function(app) {
     app.get('/api/getRestaurant', function(req, res, next){    
         restaurantQuery = Restaurant;
         if (req.query.id){
-            restaurantQuery = restaurantQuery.findOne({ _id:req.query.id });
+            restaurantQuery = restaurantQuery.find({ _id:req.query.id });
             if (req.query.name){
                 restaurantQuery = restaurantQuery.where('name').equals(req.query.name);
             }
         }
         else if (req.query.name){
-                restaurantQuery = restaurantQuery.findOne({ name:req.query.name});
+                restaurantQuery = restaurantQuery.find({ name:req.query.name});
         }
         else{
             restaurantQuery = restaurantQuery.find({});
