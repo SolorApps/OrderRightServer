@@ -2,7 +2,7 @@ var Item = require('../models/itemModel');
 
 module.exports = function(app) {
     
-    app.get('/api/getItem', function(req, res){    
+    app.get('/api/getItem', function(req, res, next){    
         itemQuery = Item;
         if (req.query.id){
             itemQuery = itemQuery.find({ _id:req.query.id });
