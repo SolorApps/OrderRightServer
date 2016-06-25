@@ -1,6 +1,9 @@
 var Item = require('../models/itemModel');
+var bodyParser = require('body-parser');
 
 module.exports = function(app) {
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
     
     app.get('/api/getItem', function(req, res, next){    
         itemQuery = Item;
@@ -38,37 +41,37 @@ module.exports = function(app) {
     app.post('/api/createItem', function(req, res, next){
         console.log('start of code');
         if (req.body.id) {
-            // console.log('id is here');
-            // Item.findByIdAndUpdate(req.body.id, {
-            //     name: req.body.name,
-            //     price: req.body.price,
-            //     imageUrl: req.body.imageUrl
-            // },function(err, item){
-            //     if (err){
-            //         error.status = 409;
-            //         return next(err);
-            //     }
-            //     else{
-            //         res.status(200).json({ result: 'success'});
-            //     }
-            // });
+            console.log('id is here');
+            Item.findByIdAndUpdate(req.body.id, {
+                name: req.body.name,
+                price: req.body.price,
+                imageUrl: req.body.imageUrl
+            },function(err, item){
+                if (err){
+                    error.status = 409;
+                    return next(err);
+                }
+                else{
+                    res.status(200).json({ result: 'success'});
+                }
+            });
         }
         else{
-            // console.log('id is not here');
-            // var newItem = Item({
-            //     name: req.body.name,
-            //     price: req.body.price,
-            //     imageUrl: req.body.imageUrl
-            // });
-            // newItem.save(function(err){
-            //     if (err){
-            //         err.status = 409;
-            //         return next(err);
-            //     }
-            //     else{
-            //         res.status(200).json({ result: 'success'});
-            //     }
-            // });
+            console.log('id is not here');
+            var newItem = Item({
+                name: req.body.name,
+                price: req.body.price,
+                imageUrl: req.body.imageUrl
+            });
+            newItem.save(function(err){
+                if (err){
+                    err.status = 409;
+                    return next(err);
+                }
+                else{
+                    res.status(200).json({ result: 'success'});
+                }
+            });
         }
         console.log('end of code');
     });
