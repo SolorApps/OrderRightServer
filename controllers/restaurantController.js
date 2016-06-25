@@ -3,7 +3,6 @@ var Restaurant = require('../models/restaurantModel');
 module.exports = function(app) {    
     app.get('/api/getRestaurant', function(req, res, next){    
         restaurantQuery = Restaurant;
-        console.log('query length' + req.query[0]);
         if (req.query.id){
             restaurantQuery = restaurantQuery.find({ _id:req.query.id });
             if (req.query.name){
@@ -57,6 +56,6 @@ module.exports = function(app) {
     app.use(function(err, req, res, next) {
         console.log(err.status);
         console.log(err.message);
-        res.status(err.status || 500),json({ error: err.message});
+        res.status(err.status || 500).json({ error: err.message});
     });
 }
