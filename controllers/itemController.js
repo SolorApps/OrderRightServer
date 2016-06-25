@@ -39,7 +39,8 @@ module.exports = function(app) {
         console.log('start of code');
         if (req.body.id) {
             console.log('id is here');
-            Item.findByIdAndUpdate(req.body.id, {
+            var id = {_id: req.body.id};
+            Item.findByIdAndUpdate(id, {
                 name: req.body.name,
                 price: req.body.price,
                 imageUrl: req.body.imageUrl
