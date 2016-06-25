@@ -35,8 +35,8 @@ module.exports = function(app) {
             else{
                 console.log(restaurant);
                 if (restaurant.length && restaurant.length > 0){
-                    res.status(200).json(restaurant);
-                    //res.send(JSON.stringify(restaurant, null, "\t"));
+                    //res.status(200).json(restaurant);
+                    res.send(JSON.stringify(restaurant, null, "\t"));
                     console.log(JSON.stringify(restaurant, null, "\t"));
                 }
                 else{
