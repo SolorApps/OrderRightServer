@@ -37,7 +37,7 @@ module.exports = function(app) {
 
     app.post('/api/createItem', function(req, res, next){
         console.log('start of code');
-        if (req.body.id) {
+        if (req) {
             // console.log('id is here');
             // Item.findByIdAndUpdate(req.body.id, {
             //     name: req.body.name,
@@ -55,12 +55,12 @@ module.exports = function(app) {
         }
         else{
             console.log('id is not here');
-            var newTodo = Item({
+            var newItem = Item({
                 name: req.body.name,
                 price: req.body.price,
                 imageUrl: req.body.imageUrl
             });
-            newTodo.save(function(err){
+            newItem.save(function(err){
                 if (err){
                     err.status = 409;
                     return next(err);
