@@ -36,6 +36,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/createItem', function(req, res, next){
+        console.log('start of code');
         if (req.body.id) {
             console.log('id is here');
             Item.findByIdAndUpdate(req.body.id, {
@@ -69,6 +70,7 @@ module.exports = function(app) {
                 }
             });
         }
+        console.log('end of code');
     });
 
 }
