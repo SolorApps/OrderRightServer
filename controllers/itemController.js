@@ -21,4 +21,29 @@ module.exports = function(app) {
             console.log(JSON.stringify(items, null, "\t"));
         });
     });
+
+    app.post('/api/item', function(req, res){
+        if (req.body.id) {
+            Item.findByIdAndUpdate(req.body.id, {
+                name: req.body.name,
+                price:req.body.price,
+                imageUrl: req.body.imageUrl
+            },function(err, todo){
+                if (err) throw err;
+                res.send('success');
+            });
+        }
+        else{
+            var newTodo = Todos({
+                name: req.body.name,
+                price:req.body.price,
+                imageUrl: req.body.imageUrl
+            });
+            newTodo.save(function(err){
+                if (err) throw err;
+                res.send('success');
+            });
+        }
+    });
+
 }

@@ -16,9 +16,9 @@ app.use('/assets', express.static(__dirname + '/public'));
 mongoose.connect(config.getDbConnectionString());
 
 setupController(app);
-itemController(app);
 menuController(app);
 restaurantController(app);
+itemController(app);
 
 //app.listen(port)
 app.listen(port,'172.31.52.14')
