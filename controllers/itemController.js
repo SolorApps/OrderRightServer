@@ -35,7 +35,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/api/createItem', function(req, res){
+    app.post('/api/createItem', function(req, res, next){
         if (req.body.id) {
             Item.findByIdAndUpdate(req.body.id, {
                 name: req.body.name,
