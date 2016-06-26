@@ -39,6 +39,7 @@ module.exports = function(app) {
             },function(err, menu){
                 if (err){
                     err.status = 409;
+                    console.log(menu);
                     return next(err);
                 }
                 else{
