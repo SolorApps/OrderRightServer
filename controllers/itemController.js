@@ -27,7 +27,7 @@ module.exports = function(app) {
             else{
                 if (items.length && items.length > 0){
                     res.status(200).json(items);
-                    console.log(JSON.stringify(restaurant, null, "\t"));
+                    console.log(JSON.stringify(items, null, "\t"));
                 }
                 else{
                     err = new Error("no items found");

@@ -5,10 +5,10 @@ module.exports = function(app) {
     app.get('/api/getMenu', function(req, res){    
         menuQuery = Menu;
         if (req.query.id){
-            menuQuery = menuQuery.find({ _id:req.query.id });
+            menuQuery = menuQuery.findOne({ _id:req.query.id });
         }
         else{
-            menuQuery = Menu.find({});
+            menuQuery = menuQuery.find({});
         }
         menuQuery.populate('Appetizers.items')
             .populate('MainDishes.items')
@@ -18,5 +18,42 @@ module.exports = function(app) {
                 res.send(JSON.stringify(menus, null, "\t"));
                 console.log(JSON.stringify(menus, null, "\t"));
             });
+    });
+    
+
+    app.post('/api/createMenu', function(req, res, next){
+        console.log('start of code');
+        menuQuery = Menu;
+        if (req.body.id) {
+            console.log('id is here');
+            var section = req.body.section;
+            Menu.findByIdAndUpdate(req.body.id, {
+                '$addToSet': {
+                    section:{
+                            items: req.body.itemId
+                    }
+                }
+            },function(err, menu){
+                if (err){
+                    error.status = 409;
+                    return next(err);
+                }
+                else{
+                    res.status(200).json({ result: 'success'});
+                }
+            });
+            // if(req.body.removeItem){
+            //     Menu.find
+            // }
+        }
+        // if (req.body.removeItem){
+        //     menuQuery.findOne({ _id:req.query.id });
+        //     menu
+        // }
+
+        // else{
+            
+        // }
+        console.log('end of code');
     });
 }
