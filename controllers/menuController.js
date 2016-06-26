@@ -33,7 +33,7 @@ module.exports = function(app) {
         if (req.body.id) {
             console.log('id is here');
             itemQuery = Item;
-            itemQuery = itemQuery.findOne({ _id:req.query.itemId });
+            itemQuery = itemQuery.findOne({ _id:req.body.itemId });
             itemQuery.exec(function(error, foundItem) {
                 if (error){
                     error.status = 404;
