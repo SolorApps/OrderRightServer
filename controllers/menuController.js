@@ -37,9 +37,9 @@ module.exports = function(app) {
                     "Appetizers.Items":req.body.itemId
                 }
             },function(err, menu){
+                console.log(menu);
                 if (err){
                     err.status = 409;
-                    console.log(menu);
                     return next(err);
                 }
                 else{
