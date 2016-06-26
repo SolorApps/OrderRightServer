@@ -43,8 +43,11 @@ module.exports = function(app) {
                     if (foundItem){
                         console.log(JSON.stringify(foundItem, null, "\t"));
                         var section = req.body.section + 'items';
+                        console.log(section);
                         var push = {};
                         push[section] = foundItem;
+                        console.log(push);
+
                         Menu.findByIdAndUpdate(req.body.id, {
                             $push:{
                                 'Appetizers.items':foundItem
