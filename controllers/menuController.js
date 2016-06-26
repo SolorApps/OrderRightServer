@@ -1,4 +1,5 @@
 var Menu = require('../models/menuModel');
+var Item = require('../models/itemModel');
 var bodyParser = require('body-parser');
 
 module.exports = function(app) {
@@ -31,25 +32,42 @@ module.exports = function(app) {
         console.log(req.body);
         if (req.body.id) {
             console.log('id is here');
-            var section = req.body.section;
-            Menu.findByIdAndUpdate(req.body.id, {
-                Appetizers:{
-                    '$addToSet': {
-                    items:[{
-                        $oid:req.body.itemId
-                    }]
-                }
-                }
-            },function(err, menu){
-                console.log(menu);
-                if (err){
-                    err.status = 409;
-                    return next(err);
+            itemQuery = Item;
+            itemQuery = itemQuery.findOne({ _id:req.query.itemId });
+            itemQuery.exec(function(error, foundItem) {
+                if (error){
+                    error.status = 404;
+                    return next(error);
                 }
                 else{
-                    res.status(200).json({ result: 'success'});
+                    if (items){
+                        console.log(JSON.stringify(items, null, "\t"));
+                        var section = req.body.section;
+                        Menu.findByIdAndUpdate(req.body.id, {
+                            Appetizers:{
+                                '$addToSet': {
+                                    items:foundItem
+                                }
+                            }
+                        },function(err, menu){
+                            console.log(menu);
+                            if (err){
+                                err.status = 409;
+                                return next(err);
+                            }
+                            else{
+                                res.status(200).json({ result: 'success'});
+                            }
+                        });
+                    }
+                    else{
+                        err = new Error("no items found");
+                        err.status = 404;
+                        next(err);
+                    }
                 }
             });
+
             // if(req.body.removeItem){
             //     Menu.find
             // }
