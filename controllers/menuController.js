@@ -49,7 +49,7 @@ module.exports = function(app) {
                                     items:foundItem
                                 }
                             }
-                        },{ 'new': true},function(err, menu){
+                        },function(err, menu){
                             console.log(menu);
                             if (err){
                                 err.status = 409;
