@@ -42,10 +42,10 @@ module.exports = function(app) {
                 else{
                     if (foundItem){
                         console.log(JSON.stringify(foundItem, null, "\t"));
-                        var section = req.body.section;
+                        var section = req.body.section + 'items';
                         Menu.findByIdAndUpdate(req.body.id, {
                             $push: {
-                                'Appetizers.items':foundItem
+                                section:foundItem
                             }
                         },{safe: true, upsert: true, new : true},function(err, menu){
                             console.log(menu);
