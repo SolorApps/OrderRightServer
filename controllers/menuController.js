@@ -44,10 +44,8 @@ module.exports = function(app) {
                         console.log(JSON.stringify(foundItem, null, "\t"));
                         var section = req.body.section;
                         Menu.findByIdAndUpdate(req.body.id, {
-                            Appetizers:{
-                                '$addToSet': {
-                                    items:foundItem
-                                }
+                            '$addToSet': {
+                                items:foundItem
                             }
                         },function(err, menu){
                             console.log(menu);
