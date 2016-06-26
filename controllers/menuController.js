@@ -40,7 +40,7 @@ module.exports = function(app) {
                 }
             },function(err, menu){
                 if (err){
-                    error.status = 409;
+                    err.status = 409;
                     return next(err);
                 }
                 else{
