@@ -1,7 +1,11 @@
 var Menu = require('../models/menuModel');
+var bodyParser = require('body-parser');
 
 module.exports = function(app) {
-    
+
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+
     app.get('/api/getMenu', function(req, res){    
         menuQuery = Menu;
         if (req.query.id){
