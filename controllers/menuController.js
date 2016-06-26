@@ -43,11 +43,11 @@ module.exports = function(app) {
                     if (foundItem){
                         console.log(JSON.stringify(foundItem, null, "\t"));
                         var section = req.body.section + 'items';
+                        var push = {};
+                        push[section] = foundItem;
                         Menu.findByIdAndUpdate(req.body.id, {
-                            'Appetizers':{
-                                $push: {
-                                    'items':foundItem
-                                }
+                            $push: {
+                                push
                             }
                         },{safe: true, upsert: true, new : true},function(err, menu){
                             console.log(menu);
@@ -67,6 +67,10 @@ module.exports = function(app) {
                     }
                 }
             });
+
+            // $push: {
+            //     'Appetizers.items':foundItem
+            // }
 
             // if(req.body.removeItem){
             //     Menu.find
