@@ -28,6 +28,7 @@ module.exports = function(app) {
     app.post('/api/createMenu', function(req, res, next){
         console.log('start of code');
         menuQuery = Menu;
+        console.log(req.body);
         if (req.body.id) {
             console.log('id is here');
             var section = req.body.section;
