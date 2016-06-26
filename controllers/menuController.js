@@ -24,14 +24,14 @@ module.exports = function(app) {
                 console.log(JSON.stringify(menus, null, "\t"));
             });
     });
-    
 
     app.post('/api/createMenu', function(req, res, next){
         console.log('start of code');
         menuQuery = Menu;
         console.log(req.body);
-        if (req.body.id) {
-            console.log('id is here');
+        // var itemFound;
+
+        if (req.body.itemId){
             itemQuery = Item;
             itemQuery = itemQuery.findOne({ _id:req.body.itemId });
             itemQuery.exec(function(error, foundItem) {
@@ -39,19 +39,15 @@ module.exports = function(app) {
                     error.status = 404;
                     return next(error);
                 }
-                else{
-                    if (foundItem){
-                        console.log(JSON.stringify(foundItem, null, "\t"));
+                else if(foundItem && req.body.id){
+                    if (req.body.section){
+                        // console.log(JSON.stringify(foundItem, null, "\t"));
                         var section = req.body.section + '.items';
-                        console.log(section);
                         var push = {};
                         push[section] = foundItem;
-                        console.log(push);
-
                         Menu.findByIdAndUpdate(req.body.id, {
                             $push:push
                         },{safe: true, upsert: true, new : true},function(err, menu){
-                            console.log(menu);
                             if (err){
                                 err.status = 409;
                                 return next(err);
@@ -62,21 +58,59 @@ module.exports = function(app) {
                         });
                     }
                     else{
-                        err = new Error("no items found");
+                        err = new Error("no menu section");
                         err.status = 404;
-                        next(err);
+                        return next(err)
                     }
                 }
+                else{
+                    err = new Error("no id or no item Found");
+                    err.status = 404;
+                    return next(err)
+                }
             });
-
-            // $push: {
-            //     'Appetizers.items':foundItem
-            // }
-
-            // if(req.body.removeItem){
-            //     Menu.find
-            // }
         }
+        else{
+
+        }
+
+
+
+        // if (req.body.id) {
+        //     console.log('id is here');
+        //     itemQuery = Item;
+        //     itemQuery = itemQuery.findOne({ _id:req.body.itemId });
+        //     itemQuery.exec(function(error, foundItem) {
+        //         if (error){
+        //             error.status = 404;
+        //             return next(error);
+        //         }
+        //         else{
+        //             if (foundItem){
+        //                 console.log(JSON.stringify(foundItem, null, "\t"));
+        //                 var section = req.body.section + '.items';
+        //                 var push = {};
+        //                 push[section] = foundItem;
+        //                 Menu.findByIdAndUpdate(req.body.id, {
+        //                     $push:push
+        //                 },{safe: true, upsert: true, new : true},function(err, menu){
+        //                     if (err){
+        //                         err.status = 409;
+        //                         return next(err);
+        //                     }
+        //                     else{
+        //                         res.status(200).json({ result: 'success'});
+        //                     }
+        //                 });
+        //             }
+        //             else{
+        //                 err = new Error("no menu section");
+        //                 err.status = 404;
+        //                 next(err);
+        //             }
+        //         }
+        //     });
+        // }
         // if (req.body.removeItem){
         //     menuQuery.findOne({ _id:req.query.id });
         //     menu
