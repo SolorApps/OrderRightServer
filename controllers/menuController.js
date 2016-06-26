@@ -40,7 +40,7 @@ module.exports = function(app) {
                     return next(error);
                 }
                 else{
-                    if (items){
+                    if (foundItem){
                         console.log(JSON.stringify(items, null, "\t"));
                         var section = req.body.section;
                         Menu.findByIdAndUpdate(req.body.id, {
