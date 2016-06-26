@@ -34,9 +34,7 @@ module.exports = function(app) {
             var section = req.body.section;
             Menu.findByIdAndUpdate(req.body.id, {
                 '$push': {
-                    Appetizers:{
-                            items: req.body.itemId
-                    }
+                    "Appetizers.Items":req.body.itemId
                 }
             },function(err, menu){
                 if (err){
