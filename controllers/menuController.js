@@ -34,7 +34,7 @@ module.exports = function(app) {
             var section = req.body.section;
             Menu.findByIdAndUpdate(req.body.id, {
                 Appetizers:{
-                    '$push': {
+                    '$addToSet': {
                         items:{$oid:req.body.itemId}
                     }
                 }
